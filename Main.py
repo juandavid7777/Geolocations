@@ -40,6 +40,16 @@ def Main():
     else:
         st.write("Unable to retrieve client IP address.")
 
+        # Get the geolocation
+    g = geocoder.ip(client_ip)
+
+    # Display the geolocation information
+    st.write("Geolocation:")
+    st.write("Latitude:", g.lat)
+    st.write("Longitude:", g.lng)
+    st.write("City:", g.city)
+    st.write("Country:", g.country)
+
 Main()
 
 #Plots map
