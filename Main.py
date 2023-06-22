@@ -18,12 +18,14 @@ st.write("Country:", g.country)
 
 #--------------------------------
 import streamlit as st
-from flask import request
+import socket
 
 def get_client_ip():
-    if request:
-        return request.remote_addr
-    return None
+    try:
+        client_ip = socket.gethostbyname(socket.gethostname())
+        return client_ip
+    except socket.gaierror:
+        return None
 
 def Main():
     st.title("Geolocation Capture")
@@ -31,8 +33,6 @@ def Main():
 
     # Get the IP address of the client machine
     client_ip = get_client_ip()
-
-    st.write(client_ip)
 
     if client_ip:
         # Display the IP address
